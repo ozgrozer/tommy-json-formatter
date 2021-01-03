@@ -29,7 +29,7 @@ const format = props => {
 }
 
 const App = () => {
-  const defaultJsonInput = '{"store":{"book":[{"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95},{"category":"fiction","author":"Evelyn Waugh","title":"Sword of Honour","price":12.99},{"category":"fiction","author":"J. R. R. Tolkien","title":"The Lord of the Rings","isbn":"0-395-19395-8","price":22.99}],"bicycle":{"color":"red","price":19.95}}}'
+  const defaultJsonInput = '{"1":{"n":"Word Counter","d":"A word counter app","v":"1.0.1","r":"ozgrozer/tommy-word-counter"},"2":{"n":"Unixtime Converter","d":"A unixtime converter app","v":"1.0.3","r":"ozgrozer/tommy-unixtime-converter"},"3":{"n":"JSON Formatter","d":"A JSON formatter app","v":"1.0.0","r":"ozgrozer/tommy-json-formatter"}}'
   const localStorageJsonInput = window.localStorage.getItem('3:jsonInput')
   const _jsonInput = localStorageJsonInput || defaultJsonInput
   const [jsonInput, setJsonInput] = useState(_jsonInput)
