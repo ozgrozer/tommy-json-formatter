@@ -5,11 +5,40 @@
   box-sizing: border-box;
 }
 
+html, body, #root, #app {
+  height: 100%;
+}
+
 body {
   background-color: #f2f4f5;
 }
 
-body, input, textarea {
+body, textarea {
   font-size: 18px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+textarea {
+  resize: none;
+  border: none;
+  display: block;
+}
+
+#app {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+
+  #input, #output {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding: 20px;
+  }
+
+  #output {
+    border-left: 1px solid #e7e8ea;
+  }
 }

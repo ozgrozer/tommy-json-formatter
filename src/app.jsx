@@ -6,7 +6,8 @@ import './app.scss'
 const App = () => {
   return (
     <div id='app'>
-      App
+      <textarea id='input' placeholder='Input' />
+      <div id='output'>output</div>
     </div>
   )
 }
