@@ -34,6 +34,7 @@ const App = () => {
   const _jsonInput = localStorageJsonInput || defaultJsonInput
   const [jsonInput, setJsonInput] = useState(_jsonInput)
   const [output, setOutput] = useState(format({ input: jsonInput }))
+  const strippedOutput = output.replace(/<[^>]*>/g, '')
 
   const onJsonInputChange = e => {
     const value = e.target.value
@@ -67,14 +68,16 @@ const App = () => {
         dangerouslySetInnerHTML={{ __html: output }}
       />
 
-      <CopyToClipboard
-        onCopy={onCopy}
-        text={output.replace(/<[^>]*>/g, '')}
-      >
-        <button id='copy' disabled={copied}>
-          {copied ? 'Copied' : 'Copy'}
-        </button>
-      </CopyToClipboard>
+      {(strippedOutput && strippedOutput !== 'JSON is not valid') && (
+        <CopyToClipboard
+          onCopy={onCopy}
+          text={strippedOutput}
+        >
+          <button id='copy' disabled={copied}>
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </CopyToClipboard>
+      )}
     </div>
   )
 }
