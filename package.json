@@ -8,7 +8,7 @@
     "dev": "parcel ./src/index.html --out-dir ./dist --public-url / --port 1234",
     "build": "parcel build ./src/index.html --out-dir ./docs --public-url ./ --no-source-maps"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-react": "^6.24.1",
     "json-beautify": "^1.1.1",
