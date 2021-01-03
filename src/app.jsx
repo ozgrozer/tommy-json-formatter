@@ -5,11 +5,26 @@ import jsonFormatHighlight from 'json-format-highlight'
 
 import './app.scss'
 
+const isJsonValid = str => {
+  try {
+    const json = JSON.parse(str)
+    return (typeof json === 'object')
+  } catch (e) {
+    return false
+  }
+}
+
 const format = props => {
-  const input = JSON.parse(props.input)
-  const beautify = jsonBeautify(input, null, 2)
-  const highlight = jsonFormatHighlight(beautify)
-  return highlight
+  const { input } = props
+
+  if (isJsonValid(input)) {
+    const _input = JSON.parse(input)
+    const beautify = jsonBeautify(_input, null, 2)
+    const highlight = jsonFormatHighlight(beautify)
+    return highlight
+  } else {
+    return 'JSON is not valid'
+  }
 }
 
 const App = () => {
@@ -21,7 +36,6 @@ const App = () => {
 
   const onJsonInputChange = e => {
     const value = e.target.value
-    console.log(value)
     setJsonInput(value)
 
     const _format = format({ input: value })
