@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import jsonBeautify from 'json-beautify'
 import jsonFormatHighlight from 'json-format-highlight'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import './app.scss'
 
@@ -44,6 +45,14 @@ const App = () => {
     window.localStorage.setItem('3:jsonInput', value)
   }
 
+  const [copied, setCopied] = useState(false)
+  const onCopy = () => {
+    setCopied(true)
+    setTimeout(() => {
+      setCopied(false)
+    }, 1500)
+  }
+
   return (
     <div id='app'>
       <textarea
@@ -52,10 +61,20 @@ const App = () => {
         onChange={onJsonInputChange}
         placeholder='Put some JSON here'
       />
+
       <div
         id='output'
         dangerouslySetInnerHTML={{ __html: output }}
       />
+
+      <CopyToClipboard
+        onCopy={onCopy}
+        text={output.replace(/<[^>]*>/g, '')}
+      >
+        <button id='copy' disabled={copied}>
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+      </CopyToClipboard>
     </div>
   )
 }
